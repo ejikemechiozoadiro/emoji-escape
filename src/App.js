@@ -20,7 +20,7 @@ const App = () => {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [playerPos]);
 
-  // Drop obstacle every 50ms
+  // Drop obstacle
   useEffect(() => {
     if (gameOver) return;
     const fall = setInterval(() => {
@@ -46,6 +46,14 @@ const App = () => {
     return () => clearInterval(timer);
   }, [gameOver]);
 
+  // Reset Game
+  const resetGame = () => {
+    setPlayerPos(1);
+    setObstaclePos({ lane: 1, top: 0 });
+    setScore(0);
+    setGameOver(false);
+  };
+
   return (
     <div className="game">
       <h1>Emoji Escape</h1>
@@ -58,15 +66,21 @@ const App = () => {
                 💣
               </div>
             )}
-            {playerPos === lane && !gameOver && (
-              <div className="player">😎</div>
+            {playerPos === lane && (
+              <div className="player">{gameOver ? "💀" : "😎"}</div>
             )}
-            {playerPos === lane && gameOver && <div className="player">💀</div>}
           </div>
         ))}
       </div>
       <h2>Score: {score}</h2>
-      {gameOver && <h2 className="over">Game Over!</h2>}
+      {gameOver && (
+        <>
+          <h2 className="over">Game Over!</h2>
+          <button onClick={resetGame} className="restart-btn">
+            Restart
+          </button>
+        </>
+      )}
     </div>
   );
 };

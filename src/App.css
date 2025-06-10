@@ -53,3 +53,18 @@ body {
 .over {
   color: red;
 }
+
+.restart-btn {
+  margin-top: 10px;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: #333;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.restart-btn:hover {
+  background: #555;
+}
