@@ -55,33 +55,41 @@ const App = () => {
   };
 
   return (
-    <div className="game">
-      <h1>Emoji Escape</h1>
-      <p>Use ← → keys to move</p>
-      <div className="board">
-        {[0, 1, 2].map((lane) => (
-          <div className="lane" key={lane}>
-            {obstaclePos.lane === lane && (
-              <div className="obstacle" style={{ top: `${obstaclePos.top}%` }}>
-                💣
-              </div>
-            )}
-            {playerPos === lane && (
-              <div className="player">{gameOver ? "💀" : "😎"}</div>
-            )}
-          </div>
-        ))}
+    <>
+      <div className="game">
+        <h1>Emoji Escape</h1>
+        <p>Use ← → keys to move</p>
+        <div className="board">
+          {[0, 1, 2].map((lane) => (
+            <div className="lane" key={lane}>
+              {obstaclePos.lane === lane && (
+                <div
+                  className="obstacle"
+                  style={{ top: `${obstaclePos.top}%` }}
+                >
+                  💣
+                </div>
+              )}
+              {playerPos === lane && (
+                <div className="player">{gameOver ? "💀" : "😎"}</div>
+              )}
+            </div>
+          ))}
+        </div>
+        <h2>Score: {score}</h2>
+        {gameOver && (
+          <>
+            <h2 className="over">Game Over!</h2>
+            <button onClick={resetGame} className="restart-btn">
+              Restart
+            </button>
+          </>
+        )}
       </div>
-      <h2>Score: {score}</h2>
-      {gameOver && (
-        <>
-          <h2 className="over">Game Over!</h2>
-          <button onClick={resetGame} className="restart-btn">
-            Restart
-          </button>
-        </>
-      )}
-    </div>
+      <p style={{ marginTop: 40, textAlign: "center" }}>
+        Made by <a href="https://linktr.ee/chiozoadiro">Chiozoadiro</a>
+      </p>
+    </>
   );
 };
 
